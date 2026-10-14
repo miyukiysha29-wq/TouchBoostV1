@@ -88,3 +88,18 @@ jobs:
           EOF
 
           cat > app/src/main/AndroidManifest.xml <<'EOF'
+          <?xml version="1.0" encoding="utf-8"?>
+          <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+              <application android:label="TouchBoost">
+                  <meta-data android:name="xposedmodule" android:value="true" />
+                  <meta-data android:name="xposeddescription" android:value="TouchBoost hook" />
+                  <meta-data android:name="xposedminversion" android:value="93" />
+              </application>
+          </manifest>
+          EOF
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: touchboost-apk
+          path: "**/build/outputs/apk/**/*.apk"
